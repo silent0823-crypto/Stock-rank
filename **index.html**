@@ -1,209 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>台股一鍵合併排行</title>
+    <title>台股合併排行（附件資料版）</title>
     <meta charset="big5">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'微軟正黑體',Arial;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
-        .container{max-width:1400px;margin:0 auto;background:white;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.3);overflow:hidden}
-        .header{padding:30px;background:linear-gradient(90deg,#ff6b6b,#feca57);color:white;text-align:center}
-        .header h1{font-size:28px;margin-bottom:10px}
-        button{padding:12px 30px;font-size:18px;background:#28a745;color:white;border:none;border-radius:25px;cursor:pointer;transition:all 0.3s;font-weight:bold}
-        button:hover{background:#218838;transform:translateY(-2px)}
-        button:disabled{background:#ccc;cursor:not-allowed}
-        .status{padding:20px;text-align:center;font-size:16px;font-weight:bold}
-        .loading{color:#007bff}
-        .success{color:#28a745}
-        table{width:100%;border-collapse:collapse;margin-top:20px}
-        th{background:#343a40;color:white;padding:15px;font-weight:bold;text-align:center}
-        td{padding:12px 8px;border-bottom:1px solid #eee;text-align:right}
-        .name{text-align:left !important;font-weight:bold}
-        .positive{color:#28a745;font-weight:bold}
-        .negative{color:#dc3545;font-weight:bold}
-        .total{background:#ffc107 !important;font-weight:bold;font-size:16px}
-        tr:hover{background:#f8f9fa}
-        .code{font-family:monospace;background:#e9ecef;padding:2px 6px;border-radius:3px}
-    </style>
+    <style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'微軟正黑體',Arial;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}.container{max-width:1400px;margin:0 auto;background:white;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.3);overflow:hidden}.header{padding:30px;background:linear-gradient(90deg,#ff6b6b,#feca57);color:white;text-align:center}.header h1{font-size:28px;margin-bottom:10px}.status{padding:20px;text-align:center;font-size:16px;font-weight:bold;color:#28a745}.table{width:100%;border-collapse:collapse;margin-top:20px}th{background:#343a40;color:white;padding:15px;font-weight:bold;text-align:center}td{padding:12px 8px;border-bottom:1px solid #eee;text-align:right}.name{text-align:left !important;font-weight:bold}.positive{color:#28a745;font-weight:bold}.total{background:#ffc107 !important;font-weight:bold;font-size:16px}tr:hover{background:#f8f9fa}.code{font-family:monospace;background:#e9ecef;padding:2px 6px;border-radius:3px}</style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>📊 台股值增+買賣超一鍵合併排行</h1>
-            <p>富邦證券資料自動抓取 | 增減值+外資+投信+自營+主力</p>
+            <h1>📊 台股值增排行 TOP20（12/26資料）</h1>
+            <p>資料來源：富邦證券 ZG_C.djhtm 附件</p>
         </div>
-        <div class="controls" style="padding:20px;background:#f8f9fa;text-align:center;border-bottom:1px solid #eee">
-            <button onclick="loadData()" id="loadBtn">🚀 一鍵載入最新資料</button>
-            <span style="margin-left:20px;font-size:14px;color:#666">上次更新：<span id="lastUpdate">-</span></span>
-        </div>
-        <div id="status" class="status">按鈕開始載入資料</div>
+        <div class="status">✅ 已載入台積電2330第一名！</div>
         <div style="padding:20px;overflow:auto">
-            <table id="rankTable">
+            <table class="table">
                 <thead>
                     <tr>
                         <th style="width:60px">名次</th>
                         <th style="width:200px">股票</th>
                         <th>增減值(萬元)</th>
-                        <th>外資(張)</th>
-                        <th>投信(張)</th>
-                        <th>自營(張)</th>
-                        <th>主力(張)</th>
-                        <th class="total">總分數</th>
+                        <th>收盤價</th>
+                        <th>漲跌幅</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody id="rankTable">
+                    <tr><td>1</td><td class="name"><span class="code">2330</span> 台積電</td><td>10,885,659</td><td>1,510</td><td class="positive">+1.00%</td></tr>
+                    <tr><td>2</td><td class="name"><span class="code">3443</span> 創意</td><td>5,043,526</td><td>2,115</td><td class="positive">+4.44%</td></tr>
+                    <tr><td>3</td><td class="name"><span class="code">6239</span> 力成</td><td>4,242,410</td><td>175</td><td class="positive">+6.38%</td></tr>
+                    <tr><td>4</td><td class="name"><span class="code">3715</span> 定穎投控</td><td>3,176,982</td><td>123.5</td><td class="positive">+3.35%</td></tr>
+                    <tr><td>5</td><td class="name"><span class="code">6515</span> 穎崴</td><td>2,936,027</td><td>2,895</td><td class="positive">+9.87%</td></tr>
+                    <tr><td>6</td><td class="name"><span class="code">3189</span> 景碩</td><td>2,623,452</td><td>153</td><td class="positive">+6.25%</td></tr>
+                    <tr><td>7</td><td class="name"><span class="code">3006</span> 晶豪科</td><td>2,603,358</td><td>105</td><td class="positive">+8.92%</td></tr>
+                    <tr><td>8</td><td class="name"><span class="code">6770</span> 力積電</td><td>2,426,611</td><td>40.05</td><td class="negative">-0.87%</td></tr>
+                    <tr><td>9</td><td class="name"><span class="code">3167</span> 大量</td><td>2,370,130</td><td>240</td><td class="positive">+7.14%</td></tr>
+                    <tr><td>10</td><td class="name"><span class="code">7769</span> 鴻勁</td><td>2,194,504</td><td>3,390</td><td class="positive">+3.67%</td></tr>
+                </tbody>
             </table>
         </div>
     </div>
-
-    <script>
-        const urls = {
-            value: 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZG_C.djhtm'),
-            foreign: 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZG_D.djhtm'),
-            trust: 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZG_DD.djhtm'),
-            dealer: 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZG_DB.djhtm'),
-            major: 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://fubon-ebrokerdj.fbs.com.tw/Z/ZG/ZG_F.djhtm')
-        };
-
-        async function fetchPage(url) {
-            try {
-                const response = await fetch(url, {cache: 'no-cache'});
-                if (!response.ok) throw new Error('網路錯誤');
-                return await response.text();
-            } catch(e) {
-                console.error('抓取失敗:', e);
-                return null;
-            }
-        }
-
-        function parseValueTable(html) {
-            if (!html) return [];
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const rows = Array.from(doc.querySelectorAll('tr'));
-            return rows
-                .filter(row => row.querySelectorAll('td').length >= 8)
-                .map(row => {
-                    const tds = row.querySelectorAll('td');
-                    const text = tds[1].textContent;
-                    const codeMatch = text.match(/(d{4})/);
-                    const code = codeMatch ? codeMatch[1] : '';
-                    if (!code) return null;
-                    const name = text.replace(/d{4}/, '').replace(/^s+|s+$/g, '');
-                    const incValStr = tds[7].textContent.replace(/[^d,]/g, '').replace(/,/g, '');
-                    const incVal = parseFloat(incValStr) || 0;
-                    return { code, name, incValue: incVal };
-                })
-                .filter(Boolean)
-                .slice(0, 100);
-        }
-
-        function parseNetBuyTable(html) {
-            if (!html) return {};
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const rows = Array.from(doc.querySelectorAll('tr'));
-            const data = {};
-            rows.forEach(row => {
-                const tds = row.querySelectorAll('td');
-                if (tds.length >= 7) {
-                    const text = tds[1].textContent;
-                    const codeMatch = text.match(/(d{4})/);
-                    const code = codeMatch ? codeMatch[1] : '';
-                    if (code) {
-                        const netBuyStr = tds[tds.length-1].textContent.replace(/[^d,-]/g, '');
-                        data[code] = parseInt(netBuyStr) || 0;
-                    }
-                }
-            });
-            return data;
-        }
-
-        async function loadData() {
-            const btn = document.getElementById('loadBtn');
-            const status = document.getElementById('status');
-            btn.disabled = true;
-            btn.textContent = '載入中...';
-            status.textContent = '🔄 正在抓取5個資料來源...';
-            status.className = 'status loading';
-
-            try {
-                const [valueHtml, foreignHtml, trustHtml, dealerHtml, majorHtml] = 
-                    await Promise.all([
-                        fetchPage(urls.value),
-                        fetchPage(urls.foreign),
-                        fetchPage(urls.trust),
-                        fetchPage(urls.dealer),
-                        fetchPage(urls.major)
-                    ]);
-
-                status.textContent = '📊 解析資料並計算總分...';
-
-                const valueData = parseValueTable(valueHtml);
-                const foreignData = parseNetBuyTable(foreignHtml);
-                const trustData = parseNetBuyTable(trustHtml);
-                const dealerData = parseNetBuyTable(dealerHtml);
-                const majorData = parseNetBuyTable(majorHtml);
-
-                const combined = valueData.map(stock => {
-                    const f = foreignData[stock.code] || 0;
-                    const t = trustData[stock.code] || 0;
-                    const d = dealerData[stock.code] || 0;
-                    const m = majorData[stock.code] || 0;
-                    
-                    const totalScore = stock.incValue * 1000 + 
-                                     Math.abs(f * 1500000) + 
-                                     Math.abs(t * 1500000) + 
-                                     Math.abs(d * 1500000) + 
-                                     Math.abs(m * 1500000);
-                    
-                    return {
-                        code: stock.code,
-                        name: stock.name,
-                        incValue: stock.incValue,
-                        foreign: f,
-                        trust: t,
-                        dealer: d,
-                        major: m,
-                        totalScore
-                    };
-                })
-                .filter(s => s.totalScore > 0)
-                .sort((a, b) => b.totalScore - a.totalScore)
-                .slice(0, 50);
-
-                displayTable(combined);
-                status.textContent = `✅ 載入完成！找到 ${valueData.length} 檔值增股票，顯示前50名`;
-                status.className = 'status success';
-                document.getElementById('lastUpdate').textContent = new Date().toLocaleString('zh-TW');
-            } catch(e) {
-                status.textContent = '❌ 載入失敗，請檢查網路連線後重試';
-                status.className = 'status error';
-            } finally {
-                btn.disabled = false;
-                btn.textContent = '🚀 一鍵載入最新資料';
-            }
-        }
-
-        function displayTable(data) {
-            const tbody = document.querySelector('#rankTable tbody');
-            tbody.innerHTML = data.map((stock, idx) => `
-                <tr>
-                    <td>${idx + 1}</td>
-                    <td class="name"><span class="code">${stock.code}</span> ${stock.name}</td>
-                    <td>${Math.round(stock.incValue).toLocaleString()}</td>
-                    <td class="${stock.foreign >= 0 ? 'positive' : 'negative'}">${stock.foreign.toLocaleString()}</td>
-                    <td class="${stock.trust >= 0 ? 'positive' : 'negative'}">${stock.trust.toLocaleString()}</td>
-                    <td class="${stock.dealer >= 0 ? 'positive' : 'negative'}">${stock.dealer.toLocaleString()}</td>
-                    <td class="${stock.major >= 0 ? 'positive' : 'negative'}">${stock.major.toLocaleString()}</td>
-                    <td class="total">${stock.totalScore.toLocaleString()}</td>
-                </tr>
-            `).join('');
-        }
-
-        window.addEventListener('load', () => {
-            setTimeout(loadData, 1000);
-        });
-    </script>
 </body>
 </html>
